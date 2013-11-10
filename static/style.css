@@ -1,0 +1,222 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+    background-color: #ccc;
+    background-image: linear-gradient(30deg, #aaa 12%, transparent 12.5%, transparent 87%, #aaa 87.5%, #aaa),
+    linear-gradient(150deg, #aaa 12%, transparent 12.5%, transparent 87%, #aaa 87.5%, #aaa),
+    linear-gradient(30deg, #aaa 12%, transparent 12.5%, transparent 87%, #aaa 87.5%, #aaa),
+    linear-gradient(150deg, #aaa 12%, transparent 12.5%, transparent 87%, #aaa 87.5%, #aaa),
+    linear-gradient(60deg, #888 25%, transparent 25.5%, transparent 75%, #888 75%, #888),
+    linear-gradient(60deg, #888 25%, transparent 25.5%, transparent 75%, #888 75%, #888);
+    background-size: 80px 140px;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+    min-height: 100%;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+@font-face {
+    font-family: 'latin_modern_mono10_regular';
+    src: url('/static/fonts/lmmono10-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%;
+    position: relative;
+}
+
+body > img {
+    display: none;
+}
+
+.header {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-bottom-left-radius: 5px;
+    display: block;
+    font-size: 0.9rem;
+    padding: 0 0 5px 5px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 2;
+}
+
+.header li {
+    clear: both;
+    float: left;
+    padding: 2px;
+    position: relative;
+    width: 120px;
+}
+
+.header a, .header span {
+    color: #333;
+    display: block;
+    outline: none;
+    padding: 2px 5px;
+    text-decoration: none;
+}
+
+.header span {
+    color: #666;
+}
+
+.header a {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+#wrapper {
+    font-family: 'latin_modern_mono10_regular', sans-serif;
+    margin: 0 auto;
+    padding: 3px;
+    position: relative;
+}
+
+
+h1 {
+    font-size: 2rem;
+    padding: 20px;
+}
+
+
+.links {
+    float: left;
+    position: relative;
+    width: 100%;
+    padding-bottom: 78px;
+}
+
+.links li {
+    border-top: 1px solid rgba(255, 255, 255, 0.085);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.85);
+    clear: both;
+    float: left;
+    margin-bottom: 1px;
+    max-height: 185px;
+    width: 100%;
+    overflow-y: auto;
+    position: relative;
+    white-space: pre-wrap;
+}
+
+.links li:nth-child(odd) {
+    background-color: rgba(225, 225, 225, 0.85);
+}
+
+.links li a {
+    color: #777;
+    float: left;
+    font-size: 1.7rem;
+    line-height: 1.9rem;
+    min-width: 182px;
+    overflow: hidden;
+    padding: 10px;
+    text-shadow: #f1f1f1 -1px 1px 0;
+    width: 60%;
+    text-decoration: none;
+}
+.links li a:hover {
+    color: #555;
+}
+
+
+
+
+.links li p a {
+    color: #34a4b8;
+}
+
+.links li p a:hover {
+    background-color: #fff;
+}
+
+ul li.on {
+    background-color: #adf6ff;
+}
+
+.hidden {
+    display: none;
+}
+
+.message-content {
+    bottom: 0;
+    height: 50px;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+
+.end {
+    float: left;
+    height: 20px;
+    position: relative;
+    width: 1px;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .header li {
+      width: auto;
+    }
+
+    .header li:nth-child(2) {
+      display: none;
+    }
+
+    #logo:hover {
+      text-indent: -9999px;
+    }
+
+    .input {
+        width: 57%;
+    }
+
+
+}

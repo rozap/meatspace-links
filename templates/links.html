@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Meatspace links..what's been linked over meatspace.</title>
+	<meta content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="chrome=1" http-equiv="X-UA-Compatible">
+	<link rel="shortcut icon" href="/images/favicon.png">
+	<link rel="stylesheet" href="/static/style.css"></head>
+<body>
+	<div id="wrapper">
+		<h1>m e a t y         l i n k s .</h1>
+		<div class="links">
+			<ul>
+				{% for link in links %}
+				<li>
+					<a href="{{ link.link }}">{{link.message}}</a>
+				</li>
+					{% endfor %}
+			</ul>
+			{% if prev or prev == 0 %}
+			<a href="?offset={{ prev }}" class="pager">Previous</a>
+			{% endif %}
+			{% if next %}
+			<a href="?offset={{ next }}" class="pager">Next</a>
+			{% endif %}
+		</div>
+	</div>
+
+</body>
+</html>
