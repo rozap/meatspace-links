@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import g, render_template, request
-import leveldb
 import listener
 from db import Database
 from threading import Thread
