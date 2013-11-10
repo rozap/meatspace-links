@@ -1,4 +1,3 @@
 flask
 socketIO-client
-leveldb
 requests
