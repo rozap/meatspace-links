@@ -30,12 +30,14 @@ class LinkGetter(object):
             except:
                 print "Bad link"
     def on_message(self, *args):
-        data = args[0]
-        message = data['chat']['value']['message']
-        key = data['chat']['key']
-        print message
-        self.do_the_thing(key, message)
-
+        try:
+            data = args[0]
+            message = data['chat']['value']['message']
+            key = data['chat']['key']
+            print message
+            self.do_the_thing(key, message)
+        except:
+            print "never crash because crashing would be bad"
 
 if __name__ == '__main__':
     linker = LinkGetter()
