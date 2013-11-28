@@ -41,6 +41,16 @@ class Database(object):
                             ) ''', (message, link, key, key))
         self._db.commit()
 
+    def insert_link_dt(self, key, message, link, dt):
+        print "Insert %s and %s @ %s" % (key, message, link)
+        cur = self._db.cursor()
+        cur.execute(''' INSERT OR REPLACE INTO
+                            links(message, link, key, created) 
+                        VALUES(?, ?, ?,
+                                COALESCE((SELECT key FROM links WHERE key = ?), ?)
+                            ) ''', (message, link, dt, key, key))
+        self._db.commit()
+
 
     def build(self):
         self._db.execute('''CREATE TABLE links (key text, message text, link text, created timestamp DEFAULT CURRENT_TIMESTAMP)''')
