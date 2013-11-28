@@ -34,7 +34,11 @@ class Database(object):
     def insert_link(self, key, message, link):
         print "Insert %s and %s @ %s" % (key, message, link)
         cur = self._db.cursor()
-        cur.execute(''' INSERT INTO links(key, message, link) VALUES(?, ?, ?) ''', (key, message, link))
+        cur.execute(''' INSERT OR REPLACE INTO
+                            links(message, link, key) 
+                        VALUES(?, ?, 
+                                COALESCE((SELECT key FROM links WHERE key = ?), ?)
+                            ) ''', (message, link, key, key))
         self._db.commit()
 
 
