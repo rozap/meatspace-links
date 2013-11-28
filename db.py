@@ -19,6 +19,12 @@ class Database(object):
     def close(self):
         self._db.close()
 
+    def link_exists(self, key):
+        cur = self._db.cursor()
+        cur.execute(''' SELECT count(*) AS c FROM links WHERE key = ? ''', (key, ))
+        return not cur.fetchone()['c'] == 0
+
+
     def get_links(self, offset = 0, limit = 5):
         cur = self._db.cursor()
         cur.execute(''' SELECT key, message, link, created FROM links ORDER BY created DESC LIMIT ? OFFSET ?''', (limit, offset))
@@ -36,20 +42,9 @@ class Database(object):
         cur = self._db.cursor()
         cur.execute(''' INSERT OR REPLACE INTO
                             links(message, link, key) 
-                        VALUES(?, ?, 
-                                COALESCE((SELECT key FROM links WHERE key = ?), ?)
-                            ) ''', (message, link, key, key))
+                        VALUES(?, ?, ?) ''', (message, link, key))
         self._db.commit()
 
-    def insert_link_dt(self, key, message, link, dt):
-        print "Insert %s and %s @ %s" % (key, message, link)
-        cur = self._db.cursor()
-        cur.execute(''' INSERT OR REPLACE INTO
-                            links(message, link, key, created) 
-                        VALUES(?, ?, ?,
-                                COALESCE((SELECT key FROM links WHERE key = ?), ?)
-                            ) ''', (message, link, dt, key, key))
-        self._db.commit()
 
 
     def build(self):

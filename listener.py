@@ -20,6 +20,8 @@ class LinkGetter(object):
 
 
     def do_the_thing(self, key, message):
+        if self.db.link_exists(key):
+            return
         groups = re.finditer(LINKY, message)
         for g in groups:
             try:
@@ -36,7 +38,8 @@ class LinkGetter(object):
             key = data['chat']['key']
             print message
             self.do_the_thing(key, message)
-        except:
+        except Exception as e:
+            print e
             print "never crash because crashing would be bad"
 
 if __name__ == '__main__':
