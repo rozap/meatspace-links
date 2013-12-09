@@ -1753,21 +1753,15 @@ window.SC.URI = function(uri, options) {
 		}
 	});
 	window.SC = SC.Helper.merge(SC || {}, {
-		oEmbed: function(trackUrl, query, callback) {
+		oEmbed: function(trackUrl, query, element, onready) {
 			var element, uri, _this = this;
-			if (callback == null) {
-				callback = query;
-				query = void 0
-			}
 			query || (query = {});
 			query.url = trackUrl;
 			uri = new SC.URI(window.location.protocol + "//" + SC.hostname() + "/oembed.json");
 			uri.query = query;
-			if (callback.nodeType !== void 0 && callback.nodeType === 1) {
-				element = callback;
-				callback = function(oembed) {
-					return element.innerHTML = oembed.html
-				}
+			callback = function(oembed) {
+				element.innerHTML = oembed.html;
+				return onready()
 			}
 			return this._request("GET", uri.toString(), null, null, function(responseText, xhr) {
 				var response;
