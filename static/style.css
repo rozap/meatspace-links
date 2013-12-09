@@ -117,6 +117,23 @@ body > img {
     position: relative;
 }
 
+#wrapper .music-player, .music-start {
+    position: fixed;
+    top:10px;
+    right:10px;
+    z-index: 10;
+}
+
+.music-player .controls>.next {
+    float:right;
+}
+.music-player .controls>.previous {
+    float:left;
+}
+.music-player, .embedded-player {
+    display: none;
+}
+
 
 h1 {
     font-size: 2rem;

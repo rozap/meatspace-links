@@ -1,32 +1,79 @@
 
+<!--
+	
+|  |_|  ||       ||   _   ||       ||       ||       ||   _   ||       ||       |
+|       ||    ___||  |_|  ||_     _||  _____||    _  ||  |_|  ||       ||    ___|
+|       ||   |___ |       |  |   |  | |_____ |   |_| ||       ||       ||   |___ 
+|       ||    ___||       |  |   |  |_____  ||    ___||       ||      _||    ___|
+| ||_|| ||   |___ |   _   |  |   |   _____| ||   |    |   _   ||     |_ |   |___ 
+|_|   |_||_______||__| |__|  |___|  |_______||___|    |__| |__||_______||_______|
+
+-->
+
+
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Meatspace links..what's been linked over meatspace.</title>
-	<meta content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
-	<meta content="yes" name="apple-mobile-web-app-capable">
-	<meta content="chrome=1" http-equiv="X-UA-Compatible">
-	<link rel="shortcut icon" href="/images/favicon.png">
-	<link rel="stylesheet" href="/static/style.css"></head>
-<body>
-	<div id="wrapper">
-		<h1>m e a t y         l i n k s .</h1>
-		<div class="links">
-			<ul>
-				{% for link in links %}
-				<li>
-					<a href="{{ link.link }}">{{link.message}}</a>
-				</li>
-					{% endfor %}
-			</ul>
-			{% if prev or prev == 0 %}
-			<a href="?offset={{ prev }}" class="pager">Previous</a>
-			{% endif %}
-			{% if next %}
-			<a href="?offset={{ next }}" class="pager">Next</a>
-			{% endif %}
-		</div>
-	</div>
+	<head>
+		<title>Meatspace links..what's been linked over meatspace.</title>
+		<meta content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="chrome=1" http-equiv="X-UA-Compatible">
+		<link rel="shortcut icon" href="/images/favicon.png">
+		<link rel="stylesheet" href="/static/style.css">
 
-</body>
+		<script type="text/javascript" src="/static/javascripts/libs/jquery.js"></script>
+		<script type="text/javascript" src="/static/javascripts/libs/soundcloud.js"></script>
+		<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+		<script type="text/javascript" src="/static/javascripts/links.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1>m e a t y    l i n k s .</h1>
+
+			<div class="music-player">
+				<div class="embedded-player" id="yt-player">
+					<div id="yt-player-el"></div>
+				</div>
+				<div class="embedded-player" id="sc-player"></div>
+
+				<div class="controls">
+					<a href="javascript:void(0)"
+						class="music-control previous"
+						data-action="previous">
+						<< Previous
+					</a>
+					<a href="javascript:void(0)"
+						class="music-control next"
+						data-action="next">
+						Next >>
+					</a>
+				</div>
+			</div>
+			<div class="music-start">
+				<a href="javascript:void(0)"
+					class="music-control"
+					data-action="show">
+					m e a t y  m u s i c
+				</a>
+			</div>
+
+
+			<div class="links">
+				<ul>
+					{% for link in links %}
+					<li>
+						<a href="{{ link.link }}">{{link.message}}</a>
+					</li>
+						{% endfor %}
+				</ul>
+				{% if prev or prev == 0 %}
+				<a href="?offset={{ prev }}" class="pager">Previous</a>
+				{% endif %}
+				{% if next %}
+				<a href="?offset={{ next }}" class="pager">Next</a>
+				{% endif %}
+			</div>
+		</div>
+
+	</body>
 </html>
