@@ -43,11 +43,19 @@ $(document).ready(function() {
 			},
 
 			'soundcloud.com': function(link, pathname, query) {
+				var that = this;
 				$ytPlayer.hide();
 				$scPlayer.show();
 				SC.oEmbed(link, {
-					auto_play: true
-				}, $scPlayer[0]);
+					auto_play: true,
+					enable_api: true,
+				}, $scPlayer[0], function() {
+					that.scWidget = SC.Widget($scPlayer.find('iframe')[0]);
+					that.scWidget.bind(SC.Widget.Events.FINISH, function() {
+						that.playNext();
+					});
+				});
+
 			}
 
 		};
@@ -87,7 +95,7 @@ $(document).ready(function() {
 		}
 
 
-		this.playNextVideo = function() {
+		this.playNext = function() {
 			if (currentLinkIndex === linkList.length - 1) {
 				this.getRandomMusic();
 			} else {
@@ -98,7 +106,7 @@ $(document).ready(function() {
 
 
 		this.next = function(e, $target) {
-			this.playNextVideo();
+			this.playNext();
 		};
 
 		this.previous = function(e, $target) {
@@ -145,7 +153,7 @@ $(document).ready(function() {
 	window.onPlayerStateChange = function(event) {
 		//pretty cool how these are just magic numbers
 		if (event.data == 0) {
-			controller.playNextVideo();
+			controller.playNext();
 		}
 	}
 });
